@@ -1,0 +1,8 @@
+<app-search (emitSearchCondition)="onemitSearchCondition($event)"></app-search>
+<div *ngIf="articles">
+  <div *ngFor="let article of articles">
+    <div><a href="{{article.path}}">{{article.title}}</a></div>
+    <div>{{article.category}}</div>
+    <div>{{article.publishTime}}</div>
+  </div>
+</div>
