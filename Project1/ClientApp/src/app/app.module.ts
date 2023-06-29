@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, isDevMode } from '@angular/core';
+import { provideClientHydration } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,7 +13,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { InterceptorProviders } from './Services/interceptor-index';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { PromptUpdateComponent } from './updateMessages/prompt-update/prompt-update.component';
+import { PromptUpdateComponent } from './updateEvents/prompt-update/prompt-update.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { PromptUpdateComponent } from './updateMessages/prompt-update/prompt-upd
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [InterceptorProviders],
+  providers: [InterceptorProviders, provideClientHydration()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
