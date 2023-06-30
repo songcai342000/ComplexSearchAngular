@@ -111,13 +111,15 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist-server",
-            "main": "src/main.ts",
-            "tsConfig": "tsconfig.server.json"
+            "main": "server.ts",
+            //"main": "src/main.server.ts",
+            //"tsConfig": "tsconfig.server.json"
+            "tsConfig": "tsconfig.app.json"
           },
           "configurations": {
             "dev": {
               "optimization": true,
-              "outputHashing": "all",
+              //"outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
@@ -126,7 +128,7 @@
             },
             "production": {
               "optimization": true,
-              "outputHashing": "all",
+              //"outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
@@ -134,6 +136,39 @@
               "buildOptimizer": true
             }
           }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "Project1:build", //removed:development
+              "serverTarget": "Project1:server"//removed:development
+            },
+            "production": {
+              "browserTarget": "Project1:build:production",
+              "serverTarget": "Project1:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "Project1:build:production",
+              "serverTarget": "Project1:server:production"
+            },
+            "development": {
+              "browserTarget": "Project1:build:development",
+              "serverTarget": "Project1:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckForUpdateService } from '../../Services/check-for-update.service';
-import { PromptUpdateService } from '../../Services/prompt-update.service';
 
 @Component({
   selector: 'app-prompt-update',
