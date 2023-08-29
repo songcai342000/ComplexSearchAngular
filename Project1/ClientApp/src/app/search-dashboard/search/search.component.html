@@ -1,5 +1,9 @@
 <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-  <div class="form-control"><input type="search" placeholder="Type your search term" formControlName="searchTerm" required><button type="submit" [disabled]="!searchForm.valid">Search</button></div>
+  <div>
+     <input type="search" placeholder="Type your search term" class="formControl" formControlName="searchTerm" id="searchTerm" #searchTerm>
+     <button type="submit" [disabled]="!searchForm.valid" class="formControl">Search</button>
+   </div>
+  <div *ngIf="searchTerm.value.length < 4">The search term must contains at least 4 signs!</div>
   <div class="form-control d-flex flex-row"><div><label id="musicLbl" for="m">Music</label><input type="checkbox" id="m" formControlName="music" #music value="music"></div><div><label id="sportLbl" for="s">Sport</label><input type="checkbox" id="s" #sport formControlName="sport" value="sport"></div><div><label id="checkCategoriesLbl" for="cc">Check all</label><input type="checkbox" id="cc" #checkCategories formControlName="checkCategories" (click)="checkAllCategories()" value="allCategories"></div></div>
   <div class="form-control d-flex flex-row"><div><label id="femaleLbl" for="f">Female</label><input type="checkbox" id="f" formControlName="female" #female value="female"></div><div><label id="sportLabl" for="ma">Male</label><input type="checkbox" id="ma" #male formControlName="male" value="male"></div><div><label id="checkGroupsLabl" for="cg">Check all</label><input type="checkbox" id="cg" #checkGroups formControlName="checkGroups" (click)="checkAllGroups()" value="allGroups"></div></div>
   <div lass="form-control d-flex flex-row"><input type="radio" value="5years" formControlName="period">Last 5 years<input type="radio" value="alltime" formControlName="period">All time</div>

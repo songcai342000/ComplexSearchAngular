@@ -109,6 +109,7 @@
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
+          "defaultConfiguration": "production", //added for app-shell
           "options": {
             "outputPath": "dist-server",
             "main": "server.ts",
@@ -124,10 +125,12 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": true,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "outputHashing": "none" //added for app-shell
             },
             "production": {
               "optimization": true,
+              "outputHashing": "media", //added for app-shell
               //"outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
@@ -137,40 +140,57 @@
             }
           }
         },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "configurations": {
-            "development": {
-              "browserTarget": "Project1:build", //removed:development
-              "serverTarget": "Project1:server"//removed:development
-            },
-            "production": {
-              "browserTarget": "Project1:build:production",
-              "serverTarget": "Project1:server:production"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
+        "app-shell": { //added manually
+          "builder": "@angular-devkit/build-angular:app-shell",
+          "defaultConfiguration": "production",
           "options": {
-            "routes": [
-              "/"
-            ]
+            "route": "shell"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "Project1:build:production",
-              "serverTarget": "Project1:server:production"
-            },
             "development": {
-              "browserTarget": "Project1:build:development",
-              "serverTarget": "Project1:server:development"
+              "browserTarget": "ComplexSearchAngular:build:development",
+              "serverTarget": "ComplexSearchAngular:server:development"
+            },
+            "production": {
+              "browserTarget": "ComplexSearchAngular:build:production",
+              "serverTarget": "ComplexSearchAngular:server:production"
             }
+          }
+        },
+          "serve-ssr": {
+            "builder": "@nguniversal/builders:ssr-dev-server",
+            "configurations": {
+              "development": {
+                "browserTarget": "Project1:build", //removed:development
+                "serverTarget": "Project1:server" //removed:development
+              },
+              "production": {
+                "browserTarget": "Project1:build:production",
+                "serverTarget": "Project1:server:production"
+              }
+            },
+            "defaultConfiguration": "development"
           },
-          "defaultConfiguration": "production"
+          "prerender": {
+            "builder": "@nguniversal/builders:prerender",
+            "options": {
+              "routes": [
+                "/"
+              ]
+            },
+            "configurations": {
+              "production": {
+                "browserTarget": "Project1:build:production",
+                "serverTarget": "Project1:server:production"
+              },
+              "development": {
+                "browserTarget": "Project1:build:development",
+                "serverTarget": "Project1:server:development"
+              }
+            },
+            "defaultConfiguration": "production"
+          }
         }
       }
-    }
   }
 }

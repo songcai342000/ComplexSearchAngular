@@ -17,8 +17,6 @@ export class SearchService {
       return this.http.get<Article[]>('api/Articles/FindMusicSportExactMatches/' + condition);
     }
     else if (searchCondition.music != '' && searchCondition.sport == '') {
-      alert(2);
-
       return this.http.get<Article[]>('api/Articles/FindMusicExactMatches/' + condition);
     }
     /*else if (searchCondition.music == '' && searchCondition.sport != '') {

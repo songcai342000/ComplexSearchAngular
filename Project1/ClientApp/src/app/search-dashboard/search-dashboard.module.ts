@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { SearchDashboardComponent } from './search-dashboard.component';
 import { SearchComponent } from './search/search.component';
-import { ReactiveFormsModule } from '@angular/forms';
-
-
-const routes: Routes = [
-  { path: '', component: SearchDashboardComponent }
-];
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchDashboardRoutingModule } from './search-dashboard-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,8 +13,9 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    SearchDashboardRoutingModule
   ]
 })
 export class SearchDashboardModule { }

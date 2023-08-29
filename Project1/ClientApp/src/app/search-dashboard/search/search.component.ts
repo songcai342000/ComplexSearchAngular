@@ -1,5 +1,5 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, NgZone, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SearchCondition } from '../../models/searchCondition';
 
 @Component({
@@ -20,8 +20,8 @@ export class SearchComponent implements OnInit {
 
 
   searchForm = new FormGroup({
-    searchTerm: new FormControl(''),
-    music: new FormControl(''),
+    searchTerm: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    music: new FormControl(''), 
     sport: new FormControl(''),
     checkCategories: new FormControl(''),
     female: new FormControl(''),
@@ -32,9 +32,10 @@ export class SearchComponent implements OnInit {
   });
 
 
-  constructor() { }
+  constructor(private ngZone: NgZone) { }
 
   ngOnInit(): void {
+    this.ngZone.runOutsideAngular(() => this.onSubmit());
   }
 
 

@@ -14,6 +14,9 @@ import { InterceptorProviders } from './Services/interceptor-index';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { PromptUpdateComponent } from './updateEvents/prompt-update/prompt-update.component';
+import { LoginButtonComponent } from './account/login-button/login-button.component';
+import { LogoutButtonComponent } from './account/logout-button/logout-button.component';
+import { UserProfileComponent } from './account/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +24,25 @@ import { PromptUpdateComponent } from './updateEvents/prompt-update/prompt-updat
     CounterComponent,
     HomeComponent,
     FetchDataComponent,
+    PromptUpdateComponent,
     AppComponent,
-    PromptUpdateComponent
+    LoginButtonComponent,
+    LogoutButtonComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    /*AuthModule.forRoot({
+      domain: 'http://localhost:4200',
+      clientId: 'PhrZVH0uIh8SL5pBghbmBTkgxbcZtm6d',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    }),*/
+    //AccountModule,
     HttpClientModule,
-    ReactiveFormsModule,
+    //ReactiveFormsModule,
+    //FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
