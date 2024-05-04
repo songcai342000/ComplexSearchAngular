@@ -1,1 +1,1 @@
-In this program one can search for files which contains the text of the searching term and matches the search conditions he/she sets. 
+In this program one can search for files which contain the text of the searching term and match the search conditions he/she sets. 
